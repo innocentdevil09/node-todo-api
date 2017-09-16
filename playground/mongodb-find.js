@@ -13,6 +13,7 @@ MongoClient.connect('mongodb://localhost:27017/Users', (err, db) => {
     }, (err) => {
       console.log('Unable to find data', err);
     });
+    //db.close();
 });
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
@@ -50,4 +51,6 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
   // }, (err) => {
   //   console.log('Unable to find data', err);
   // });
+
+  //db.close();
 });
