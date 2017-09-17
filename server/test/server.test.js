@@ -13,7 +13,7 @@ var todos = [{
 beforeEach((done) => {
   Todo.remove({}).then(() => {
     console.log('Database is empty.');
-    Todo.insertMany(todos);
+    return Todo.insertMany(todos);
   }).then(() => done());
 });
 
