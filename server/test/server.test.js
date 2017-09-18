@@ -140,3 +140,39 @@ describe('Test DELETE /todos/:id', () => {
       .end(done);
   });
 });
+
+describe('Test PATCH /todos/:id', () => {
+  it('should update todo by Id', (done) => {
+    var hexId = todos[0]._id.toHexString();
+    var text = 'Testing PATCH /todos';
+
+    request(app)
+      .patch(`/todos/${hexId}`)
+      .send({
+        text: text,
+        completed: true
+      })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.todo.text).toBe(text);
+        expect(res.body.todo.completed).toBe(true);
+        expect(res.body.todo.completedAt).toBeA('number');
+      })
+      .end(done);
+  });
+
+  it('should clear completedAt when todo is not completed', (done) => {
+    var hexId = todos[0]._id.toHexString();
+
+    request(app)
+      .patch(`/todos/${hexId}`)
+      .send({
+        completed: false
+      })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.todo.completedAt).toBe(0);
+      })
+      .end(done);
+  });
+});
