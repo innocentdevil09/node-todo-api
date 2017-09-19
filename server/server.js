@@ -50,6 +50,8 @@
 // }, (err) => {
 //   console.log('Unable to save user', err);
 // });
+require('./config/config');
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -167,7 +169,7 @@ app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user);
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
 });
