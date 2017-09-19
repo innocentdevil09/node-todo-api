@@ -17,15 +17,21 @@ var users = [{
 }, {
   _id: userTwoId,
   email: 'shivani1@example.com',
-  password: 'password!'
+  password: 'password!',
+  tokens: [{
+    token: jwt.sign({_id: userTwoId, access: 'auth'}, 'abc123').toString(),
+    access: 'auth'
+  }]
 }];
 
 var todos = [{
   _id: new ObjectID(),
-  text: 'First test todo.'
+  text: 'First test todo.',
+  _creator: userOneId
 }, {
   _id: new ObjectID(),
-  text: 'Second test todo.'
+  text: 'Second test todo.',
+  _creator: userTwoId
 }];
 
 var populateTodos = (done) => {
