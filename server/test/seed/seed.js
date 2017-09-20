@@ -11,7 +11,7 @@ var users = [{
   email: 'shivani@example.com',
   password: 'password!',
   tokens: [{
-    token: jwt.sign({_id: userOneId, access: 'auth'}, 'abc123').toString(),
+    token: jwt.sign({_id: userOneId, access: 'auth'}, process.set.JWT_SECRET).toString(),
     access: 'auth'
   }]
 }, {
@@ -19,7 +19,7 @@ var users = [{
   email: 'shivani1@example.com',
   password: 'password!',
   tokens: [{
-    token: jwt.sign({_id: userTwoId, access: 'auth'}, 'abc123').toString(),
+    token: jwt.sign({_id: userTwoId, access: 'auth'}, process.env.JWT_SECRET).toString(),
     access: 'auth'
   }]
 }];
